@@ -3,10 +3,14 @@
     <head>
     <title>Laravel 5.3.</title>
         <meta charset="utf-8">
+
     </head>
     <body>
-        <div>
+        <div class="conteiner">
     @yield('content')
         </div>
+
+
+        @stack('script')
     </body>
 </html>

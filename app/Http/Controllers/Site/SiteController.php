@@ -17,7 +17,10 @@ public function __construct(){
     public function index(){
         $teste=123;// passando varial para a view
         $teste1=1224;
-        return view('index',compact('teste','teste1'));
+        $var=159;
+        $arrayTeste=[1,2,4,5,6,7,8,9,10];
+        $array2=[];
+        return view('index',compact('teste','teste1','var','arrayTeste','array2'));
         }
 
 

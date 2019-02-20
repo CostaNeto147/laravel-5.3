@@ -101,7 +101,11 @@
     // caso eu nao cria-se grupo seria dessa forma
     //Route::get('/','Site\SiteController@index');
 
+
+Route::get('painel/produtos/testes','Painel\ProdutoController@testes');// teste
 Route::resource('/painel/produtos','Painel\ProdutoController');// metodo agora é resource poor existe varios metodos diferentes CRUD
+
+
 
 
 
