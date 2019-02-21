@@ -20,7 +20,7 @@ class CreateProdutosTable extends Migration
             $table->string('image',200)->nullable();
             $table->boolean('active');
             $table->enum('category',['limpeza','alimento','frio','bebida']);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

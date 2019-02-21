@@ -20,13 +20,13 @@ class Produto extends Model
     // max maximo de caractere
 
 
-    public $rules=[// regras para validar os campo
+    /*public $rules=[// regras para validar os campo
         'name'          =>'required|min:3|max:100',
         'number'        =>'required|numeric|max:10',
         'category'      =>'required|',
         'description'   =>'max:1500'
 
     ];
-
+*/
 
 }

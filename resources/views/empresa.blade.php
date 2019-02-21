@@ -19,11 +19,11 @@
         <td>{{$item->name}}</td>
         <td>{{$item->description}}</td>
         <td>
-            <a href=""class=" action edit" >
+            <a href="{{route("produtos.edit", $item->id)}}"class=" action edit" >
                     <i class="material-icons">border_color</i>
             </a>
-            <a href="" class="action delete">
-                    <i class="material-icons">speaker_notes_off</i>
+            <a href="{{route("produtos.show", $item->id)}}" class="action delete">
+                <i class="material-icons">assignment_ind</i>
             </a>
         </td>
     </tr>

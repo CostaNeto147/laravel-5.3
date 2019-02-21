@@ -54,7 +54,7 @@ public function __construct(Produto $prod)
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
 
        //dd($request->all()); retorn tudo
@@ -72,7 +72,7 @@ public function __construct(Produto $prod)
         //validação
         //dd($request->all(), $this->produt->rules);
 
-        $this->validate($request, $this->produt->rules);
+      //  $this->validate($request, $this->produt->rules);
 
 //inserindo os dados do formulario no banco de dados metodo insert
         $insert=$this->produt->create($request->all());
@@ -94,6 +94,9 @@ public function __construct(Produto $prod)
     public function show($id)
     {
         //
+        $produto=$this->produt->find($id);
+
+        return view('showProduto',compact('produto'));
     }
 
     /**
@@ -104,7 +107,12 @@ public function __construct(Produto $prod)
      */
     public function edit($id)
     {
-        //
+
+        //$produto=$this->produt
+        $produto=$this->produt->find($id);// recuperando os dados pelo id do produto e armazendo em uma variavel
+
+        $categoria=['limpeza', 'alimento', 'frio', 'bebida'];
+        return view('createProduto',compact('categoria','produto'));
     }
 
     /**
@@ -114,9 +122,17 @@ public function __construct(Produto $prod)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProdutoRequest $request, $id)
     {
         //
+        $produto=$this->produt->find($id);// recuperando o id e salvando na variavel produto
+        $request->merge(['active' => request('active',0)]); // se os active for vazio sera incluido o 0 senão o 1;
+
+        $update=$produto->update($request->all());// atusalizando todos os dados na variavel $update e executando mmetodo update na varisvel produto
+        if($produto)
+       return redirect()->route('produtos.index');
+        else
+        return redirect()->route('produtos.edit',$id)->with(['errors'=>'Falha ao editar']);
     }
 
     /**
@@ -127,7 +143,11 @@ public function __construct(Produto $prod)
      */
     public function destroy($id)
     {
+        $produto=$this->produt->find($id);
+        //$delet=$produto->delete($request->all());
+        dd($produto);
         //
+        return "teste{$id}";
     }
     public function testes(){
 

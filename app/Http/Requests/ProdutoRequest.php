@@ -11,7 +11,7 @@ class ProdutoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize()// verifica se o usuário esta autorizado ou não
     {
         return true;
     }
@@ -21,14 +21,23 @@ class ProdutoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules()// validação dos campos do formularios para preenchimento
     {
         //dd($this->request);
         return [
             'name'          =>'required|min:3|max:100',
             'number'        =>'required|numeric|max:99999',
-            'category'      =>'required|',
+            'category'      =>'required',
             'description'   =>'max:1500'
+        ];
+    }
+
+    public function messages(){// mensagem de erros
+        return[
+            'name.required'=>'O campo nome é obrigatório ser preenchido',
+            'number.required'=>'O campo número é obrigatório ser preenchido',
+            'number.numeric'=>'O campo so aceita números',
+            'category.required'      =>' Obrigatório o preencimento'
         ];
     }
 }
