@@ -19,8 +19,7 @@ class ProdutoController extends Controller
 
 
 private $produt;
-
-
+private $pag=10;
 
 public function __construct(Produto $prod)
     {
@@ -29,7 +28,8 @@ public function __construct(Produto $prod)
 
     public function index()
     {
-        $produtos = $this->produt->all();
+        $produtos = $this->produt->paginate($this->pag);
+        //dd($produtos);
 
         return view('empresa',compact('produtos'));
     }
@@ -144,10 +144,14 @@ public function __construct(Produto $prod)
     public function destroy($id)
     {
         $produto=$this->produt->find($id);
-        //$delet=$produto->delete($request->all());
-        dd($produto);
+        $delet=$produto->delete($produto);
+        if($delet)
+        return redirect()->route('produtos.index');
+        else
+        return redirect()->route('produtos.destroy',$id)->with(['errors'=>'Falha ao deletar']);
+
         //
-        return "teste{$id}";
+
     }
     public function testes(){
 

@@ -30,4 +30,5 @@
 
 @endforeach
 </table>
+{{ $produtos->links() }}
 @endsection

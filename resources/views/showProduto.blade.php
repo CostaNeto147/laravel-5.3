@@ -13,7 +13,8 @@
 <hr>
  <form class="form formcad" method="POST" action="{{route('produtos.destroy', $produto->id)}} " >
         {!! method_field('DELETE')!!}
-<input type="submit" value="Apagar dados" class="btn btn-danger">
+        {!! csrf_field() !!}
+<input type="submit" value="Apagar Produto" class="btn btn-danger">
 
 </form>
 
